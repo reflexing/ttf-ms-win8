@@ -11,25 +11,25 @@
 # to license issues cannot automatically download the fonts.
 #
 # Please note, that usage of Microsoft fonts outside running Windows
-# system is prohibited by EULA (although in certain countries EULA is invalid). 
+# system is prohibited by EULA (although in certain countries EULA is invalid).
 # Please consult Microsoft license before using fonts.
 #
-# You can acquire fonts either from an installed Windows 8 RTM system 
+# You can acquire fonts either from an installed Windows 8 RTM system
 # or install medium. Any edition of Windows 8 build 6.2.9200.16384 will work.
 #
-# On the installed Windows 8 system fonts are usually located in 
+# On the installed Windows 8 system fonts are usually located in
 #       C:\Windows\Fonts
 #
 # How to acquire fonts from Windows 8 RTM install medium:
 #
-#    You can freely download Windows 8 Enterprise 90-day evaluation 
+#    You can freely download Windows 8 Enterprise 90-day evaluation
 #    for developers from:
 #       http://msdn.microsoft.com/en-US/evalcenter/jj554510.aspx
 #
-#    Fonts are located in 'sources/install.wim' on the ISO, which 
+#    Fonts are located in 'sources/install.wim' on the ISO, which
 #    is a 'Windows Imaging Format' (WIM) archive.
 #
-#    This archive can be extracted with 7-zip ('p7zip' package in repos) 
+#    This archive can be extracted with 7-zip ('p7zip' package in repos)
 #    running the following commands in the dir, containing ISO
 #   (make necessary changes if needed):
 #
@@ -41,11 +41,11 @@
 #    You can also use GNOME's File Roller (and maybe other archive
 #    managers) to extract the files if the 'p7zip' package is installed.
 #
-#    Alternatively, you can extract WIM using imagex 
+#    Alternatively, you can extract WIM using imagex
 #   ('wimlib' package from AUR).
 #
-#    Put the following script together with previously extracted 
-#    'install.wim' and execute:
+#    Put the following script together with previously extracted
+#   'install.wim' and execute:
 #
 #       #!/bin/sh
 #       mkdir tmp fonts
@@ -117,7 +117,7 @@ build() {
   cd "$srcdir"
 
   # cambria.ttc is a TrueType Collection (TTC) which causes problems with
-  # LibreOffice (Cambria Reguar cannot be selected) so we need to convert
+  # LibreOffice (Cambria Regular cannot be selected) so we need to convert
   # the TTC into a TrueType Font (TTF).
   FONTFORGE_LANGUAGE=ff fontforge -c 'Open("cambria.ttc(Cambria)"); Generate("cambria.ttf")'
 }
