@@ -1,8 +1,7 @@
 #!/bin/sh
-7z e Windows8-ReleasePreview-32bit-English.iso sources/install.wim
+7z e $1 sources/install.wim
 mkdir tmp fonts
 imagex mount install.wim 1 tmp
-cp tmp/Windows/Fonts/*.ttf fonts
-cp tmp/Windows/System32/license.rtf fonts
+cp tmp/Windows/Fonts/{*.ttf,*.ttc} fonts
 imagex unmount tmp
-rm -R tmp install.wim
+rm -r tmp
