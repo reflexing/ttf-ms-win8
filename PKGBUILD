@@ -69,7 +69,7 @@ true && pkgname=($pkgbase $pkgbase-arabic $pkgbase-hebrew
     $pkgbase-zh_CN $pkgbase-zh_TW $pkgbase-thai $pkgbase-other)
 
 pkgver=6.2.9200.16384
-pkgrel=5
+pkgrel=6
 pkgdesc='Microsoft Windows 8 TrueType fonts'
 arch=('any')
 url='http://www.microsoft.com/typography/fonts/product.aspx?PID=164'
@@ -138,6 +138,7 @@ consola.ttf    consolab.ttf   consolai.ttf   consolaz.ttf   # Consolas          
 constan.ttf    constanb.ttf   constani.ttf   constanz.ttf   # Constantia              5.90
 corbel.ttf     corbelb.ttf    corbeli.ttf    corbelz.ttf    # Corbel                  5.61
 )
+_ttf_ms_win8=("${_ttf_ms_win8[@]}" "${_vista[@]}")
 
 _SEA=(
 #####################################################################################################
@@ -334,6 +335,8 @@ function build {
     fontforge -lang=ff -c "$ff_script" *.ttc
 }
 
+
+
 function _package {
     cd "$srcdir"
 
@@ -342,6 +345,8 @@ function _package {
         fonts_array_name=_${pkgbase//-/_}[@];
     else
         fonts_array_name=_${1#${pkgbase}-}[@];
+        provides=($1)
+        conflicts=()
     fi
 
     fonts=${!fonts_array_name};
@@ -424,6 +429,32 @@ md5sums=('1e0acd79a5a6e269a3421dc00d9aa722'
          'b8d06d04e2d848ebcdd428cd8125f211'
          '40a90d72da61d7c609c9a4c4bb37c710'
          '68c74934563bf4afa50793c67bd19b24'
+         'baf2d27a2cc7aea124138fb8b4fb5b4d'
+         '8879a4caa29c42ce616cd5f172299366'
+         'a2e4c0b388a3013015349a2aee18fe38'
+         'a3e6f73440d8535c2c7c43489e942a10'
+         '333ce7de4d889233dea963e16f547487'
+         '2c03a94cb796eb012908069335c98252'
+         '6ede9249499bba99886e63efb89eac37'
+         '081c24bfc5625fd86e7aa96d2599d869'
+         '7e32ca996d7f588ed65551a37ae145ed'
+         '6036be2d769db6a0f1918cb65b48b89c'
+         '8daa0f2304ee100fe3888d5b7307e64f'
+         '702d8433e65d57e2612d01f1db078242'
+         'f4ab481e2d12c0321cc1907192da90f0'
+         '44b0a478d3b790698f52828bbf6b2b68'
+         '2b96269935d724df38efb541ee391f8f'
+         '3ff4f49424db1e955ca167ce06a0dfd2'
+         '5409c269bd43ed6daece60eaa546a02c'
+         '242915b2e93efd217abef857cc3d3ed1'
+         '39d51726a8c8b7eb4bb6fab61d16841a'
+         'b411b0999020c9c25b8151e359197150'
+         '68948ea9bc8b232cc5664e2aab39c80c'
+         '1ad619060822679a34db35a498f98ecc'
+         '51ee907427c788c3ab4442e73286d641'
+         'c87f06ae40c78321844f2eac8b51737f'
+         'e6c0e179deb07f3fc7a6d0d7a2a77247'
+         '6c5e3e581b522258be508b4d8868025d'
          'baf2d27a2cc7aea124138fb8b4fb5b4d'
          '8879a4caa29c42ce616cd5f172299366'
          'a2e4c0b388a3013015349a2aee18fe38'
