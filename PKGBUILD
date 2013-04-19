@@ -146,32 +146,15 @@ build() {
     Open("cambria.ttc(Cambria Math)"); Generate("cambria-math.ttf"); Close();' &> /dev/null
 }
 
+package() {
+  cd "$srcdir"
 
+  # Prepare destination directory
+  install -dm755 "$pkgdir/usr/share/fonts/TTF"
 
-function _package {
-    cd "$srcdir"
-
-    # Array name can't have underscores… thus this check
-    if [ "$1" = "$pkgbase" ]; then
-        fonts_array_name=_${pkgbase//-/_}[@];
-    else
-        fonts_array_name=_${1#${pkgbase}-}[@];
-        provides=($1)
-        conflicts=()
-    fi
-
-    fonts=${!fonts_array_name};
-
-    # Prepare destination directory
-    install -dm755 "$pkgdir/usr/share/fonts/TTF"
-
-    # Install fonts
-    for font in ${fonts[@]}; do
-        install -m644 $font "$pkgdir/usr/share/fonts/TTF"
-    done
-
-    # Install license
-    install -Dm644 license.rtf "$pkgdir/usr/share/licenses/$pkgname/license.rtf"
+  # Install fonts and license
+  install -m644 *.ttf "$pkgdir/usr/share/fonts/TTF"
+  install -Dm644 license.rtf "$pkgdir/usr/share/licenses/$pkgname/license.rtf"
 }
 
 md5sums=('ef538142f0ec5aa6849874796f726f15'
