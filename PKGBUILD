@@ -14,63 +14,51 @@
 # system is prohibited by EULA (although in certain countries EULA is invalid).
 # Please consult Microsoft license before using fonts.
 #
-# You can acquire fonts either from an installed Windows 8 RTM system
-# or install medium. Any edition of Windows 8 build 6.2.9200.16384 will work.
+# You can acquire fonts either from an installed Windows 8.1 RTM system
+# or install medium. Any edition of Windows 8.1 RTM build 6.3.9600.16384 will work.
 #
-# On the installed Windows 8 system fonts are usually located in
+# On the installed Windows 8.1 system fonts are usually located in
 #       C:\Windows\Fonts
 #
-# How to acquire fonts from Windows 8 RTM install medium:
+# How to acquire fonts from Windows 8.1 RTM install medium:
 #
-#    You can freely download Windows 8 Enterprise 90-day evaluation
-#    for developers from:
-#       http://msdn.microsoft.com/en-US/evalcenter/jj554510.aspx
+#    You can freely download The Windows 8.1 Enterprise evaluation from:
+#       http://technet.microsoft.com/en-US/evalcenter/hh699156.aspx?ocid=wc-mscom-ent
 #
-#    Fonts are located in 'sources/install.wim' on the ISO, which
+#    Fonts are located in 'sources/install.wim' file on the ISO, which
 #    is a 'Windows Imaging Format' (WIM) archive.
 #
-#    This archive can be extracted with 7-zip ('p7zip' package in repos)
-#    running the following commands in the dir, containing ISO
-#   (make necessary changes if needed):
-#
-#       7z e Windows_8_Pro_EN-US_x64.ISO sources/install.wim
-#       7z e install.wim 1/Windows/Fonts/{*.ttf,cambria.ttc} -ofonts
-#
-#    Fonts will be located in the 'fonts' dir.
-#
-#    You can also use GNOME's File Roller (and maybe other archive
-#    managers) to extract the files if the 'p7zip' package is installed.
-#
-#    Alternatively, you can extract WIM using imagex
-#   ('wimlib' package from AUR).
+#    You can extract WIM using wimlib-imagex ('wimlib' package from AUR).
 #
 #    Put the following script together with previously extracted
 #   'install.wim' and execute:
 #
 #       #!/bin/sh
 #       mkdir tmp fonts
-#       imagex mount install.wim 1 tmp
-#       cp tmp/Windows/Fonts/{*.ttf,cambria.ttc} fonts
-#       imagex unmount tmp
+#       wimlib-imagex mount install.wim 1 tmp
+#       cp tmp/Windows/Fonts/{*.ttf,*.ttc} fonts
+#       cp tmp/Windows/System32/license.rtf fonts
+#       wimlib-imagex unmount tmp
 #
-#    Fonts will be located in the 'fonts' dir.
+#    Fonts and license will be located in the 'fonts' dir.
 #
 # Fonts are best viewed with Infinality freetype2 packages:
-#   https://wiki.archlinux.org/index.php/Font_Configuration#Infinality
+#
+#    https://wiki.archlinux.org/index.php/Font_Configuration#Infinality
+#
 # Infinality offers great font rendering and customization.
 #
 # You need the files listed in the source=() array. Place them in the same
 # directory as this PKGBUILD file, then run makepkg.
 
 pkgbase=ttf-ms-win8
-pkgname=$pkgbase
-true && pkgname=($pkgbase $pkgbase-arabic $pkgbase-hebrew
+pkgname=($pkgbase $pkgbase-arabic $pkgbase-hebrew
     $pkgbase-SEA $pkgbase-indic $pkgbase-japanese $pkgbase-korean
     $pkgbase-zh_CN $pkgbase-zh_TW $pkgbase-thai $pkgbase-other)
 
-pkgver=6.2.9200.16384
-pkgrel=6
-pkgdesc='Microsoft Windows 8 TrueType fonts'
+pkgver=6.3.9600.16384
+pkgrel=1
+pkgdesc='Microsoft Windows 8.1 TrueType fonts'
 arch=('any')
 url='http://www.microsoft.com/typography/fonts/product.aspx?PID=164'
 license=('custom')
@@ -82,260 +70,293 @@ install="$pkgbase.install"
 PKGEXT='.pkg.tar'
 
 _ttf_ms_win8=(
-#####################################################################################################
-# Normal         Bold          Italic        Bold+Italic    #  Full name           Version  Comment #
-#####################################################################################################
-arial.ttf      arialbd.ttf    ariali.ttf     arialbi.ttf    # Arial                   6.80
-ariblk.ttf                                                  # Arial Black             5.21
-comic.ttf      comicbd.ttf    comici.ttf     comicz.ttf     # Comic Sans MS           5.11
-cour.ttf       courbd.ttf     couri.ttf      courbi.ttf     # Courier New             6.80
-framd.ttf                     framdit.ttf                   # Franklin Gothic Medium  5.01
-                                                            #   Italic                5.00
-Gabriola.ttf                                                # Gabriola                5.92
-georgia.ttf    georgiab.ttf   georgiai.ttf   georgiaz.ttf   # Georgia                 5.51
-impact.ttf                                                  # Impact                  5.10
-lucon.ttf                                                   # Lucida Console          5.00
-l_10646.ttf                                                 # Lucida Sans Unicode     5.00
-marlett.ttf                                                 # Marlett                 5.00 Symbol
-micross.ttf                                                 # Microsoft Sans Serif    5.10
-pala.ttf       palab.ttf      palai.ttf      palabi.ttf     # Palatino Linotype       5.01
-segoepr.ttf    segoeprb.ttf                                 # Segoe Print             5.02
-segoesc.ttf    segoescb.ttf                                 # Segoe Script            5.00
-segoeui.ttf    segoeuib.ttf   segoeuii.ttf   segoeuiz.ttf   # Segoe UI                5.28
-                                                            #   Bold                  5.27
-                                                            #   Italic                5.26
-                                                            #   Bold Italic           5.26
-segoeuil.ttf                  seguili.ttf                   # Segoe UI Light          5.27
-                                                            #   Italic                5.26
-seguisb.ttf                   seguisbi.ttf                  # Segoe UI Semibold       5.27
-                                                            #   Italic                5.26
-segoeuisl.ttf                 seguisli.ttf                  # Segoe UI Semilight      5.27
-                                                            #   Italic                5.26
-seguisym.ttf                                                # Segoe UI Symbol         5.90
-sylfaen.ttf                                                 # Sylfaen                 5.03
-symbol.ttf                                                  # Symbol                  5.00
-tahoma.ttf     tahomabd.ttf                                 # Tahoma                  5.25
-times.ttf      timesbd.ttf    timesi.ttf     timesbi.ttf    # Times New Roman         6.80
-trebuc.ttf     trebucbd.ttf   trebucit.ttf   trebucbi.ttf   # Trebuchet MS            5.10
-verdana.ttf    verdanab.ttf   verdanai.ttf   verdanaz.ttf   # Verdana                 5.31
-                                                            #   Bold                  5.30
-                                                            #   Italic                5.30
-                                                            #   Bold Italic           5.30
-webdings.ttf                                                # Webdings                5.00 Symbol
-wingding.ttf                                                # Wingdings               5.00 Symbol
+#########################################################################################################
+# Normal         Bold          Italic        Bold+Italic    #  Full name               Version  Comment #
+#########################################################################################################
+arial.ttf      arialbd.ttf    ariali.ttf     arialbi.ttf    # Arial                       6.85
+ariblk.ttf                                                  # Arial Black                 5.21
+comic.ttf      comicbd.ttf    comici.ttf     comicz.ttf     # Comic Sans MS               5.11
+cour.ttf       courbd.ttf     couri.ttf      courbi.ttf     # Courier New                 6.85
+framd.ttf                                                   # Franklin Gothic Medium      5.01
+                              framdit.ttf                   #   Italic                    5.00
+Gabriola.ttf                                                # Gabriola                    5.92
+georgia.ttf    georgiab.ttf   georgiai.ttf   georgiaz.ttf   # Georgia                     5.51
+impact.ttf                                                  # Impact                      5.10
+lucon.ttf                                                   # Lucida Console              5.00
+l_10646.ttf                                                 # Lucida Sans Unicode         5.00
+marlett.ttf                                                 # Marlett                     5.00 Symbol
+micross.ttf                                                 # Microsoft Sans Serif        6.00
+pala.ttf       palab.ttf      palai.ttf      palabi.ttf     # Palatino Linotype           5.02
+segoepr.ttf    segoeprb.ttf                                 # Segoe Print                 5.02
+segoesc.ttf    segoescb.ttf                                 # Segoe Script                5.00
+segoeui.ttf    segoeuib.ttf                                 # Segoe UI                    5.32
+                              segoeuii.ttf                  #   Italic                    5.26
+                                             segoeuiz.ttf   #   Bold Italic               5.26
+seguibl.ttf                   seguibli.ttf                  # Segoe UI Black              2.00
+seguiemj.ttf                                                # Segoe UI Emoji              1.02
+segoeuil.ttf                                                # Segoe UI Light              5.33
+                              seguili.ttf                   #   Italic                    5.26
+seguisb.ttf                                                 # Segoe UI Semibold           5.32
+                              seguisbi.ttf                  #   Italic                    5.26
+segoeuisl.ttf                                               # Segoe UI Semilight          5.33
+                              seguisli.ttf                  #   Italic                    5.26
+seguisym.ttf                                                # Segoe UI Symbol             6.06
+Sitka.ttc      SitkaB.ttc     SitkaI.ttc     SitkaZ.ttc     # Sitka Banner                1.10 Latin, Greek and Cyrillic
+#Sitka.ttc     #SitkaB.ttc    #SitkaI.ttc    #SitkaZ.ttc    # Sitka Display               1.10
+#Sitka.ttc     #SitkaB.ttc    #SitkaI.ttc    #SitkaZ.ttc    # Sitka Heading               1.10
+#Sitka.ttc     #SitkaB.ttc    #SitkaI.ttc    #SitkaZ.ttc    # Sitka Small                 1.10
+#Sitka.ttc     #SitkaB.ttc    #SitkaI.ttc    #SitkaZ.ttc    # Sitka Subheading            1.10
+#Sitka.ttc     #SitkaB.ttc    #SitkaI.ttc    #SitkaZ.ttc    # Sitka Text                  1.10
+sylfaen.ttf                                                 # Sylfaen                     5.03
+symbol.ttf                                                  # Symbol                      5.00
+tahoma.ttf     tahomabd.ttf                                 # Tahoma                      6.00
+times.ttf      timesbd.ttf    timesi.ttf     timesbi.ttf    # Times New Roman             6.85
+trebuc.ttf     trebucbd.ttf   trebucit.ttf   trebucbi.ttf   # Trebuchet MS                5.12
+verdana.ttf                                                 # Verdana                     5.31
+               verdanab.ttf                                 #   Bold                      5.30
+                              verdanai.ttf                  #   Italic                    5.30
+                                             verdanaz.ttf   #   Bold Italic               5.30
+webdings.ttf                                                # Webdings                    5.00 Symbol
+wingding.ttf                                                # Wingdings                   5.00 Symbol
 )
 
 _vista=(
-#####################################################################################################
-# Normal         Bold          Italic        Bold+Italic    #  Full name           Version  Comment #
-#####################################################################################################
-calibri.ttf    calibrib.ttf   calibrii.ttf   calibriz.ttf   # Calibri                 5.72
-calibril.ttf                  calibrili.ttf                 # Calibri Light           2.00
-cambria.ttc    cambriab.ttf   cambriai.ttf   cambriaz.ttf   # Cambria                 6.80
-#cambria.ttc                                                # Cambria Math            6.80
-Candara.ttf    Candarab.ttf   Candarai.ttf   Candaraz.ttf   # Candara                 5.61
-consola.ttf    consolab.ttf   consolai.ttf   consolaz.ttf   # Consolas                5.32
-constan.ttf    constanb.ttf   constani.ttf   constanz.ttf   # Constantia              5.90
-corbel.ttf     corbelb.ttf    corbeli.ttf    corbelz.ttf    # Corbel                  5.61
+#########################################################################################################
+# Normal         Bold          Italic        Bold+Italic    #  Full name               Version  Comment #
+#########################################################################################################
+calibri.ttf    calibrib.ttf   calibrii.ttf   calibriz.ttf   # Calibri                     5.86
+calibril.ttf                  calibrili.ttf                 # Calibri Light               2.11
+cambria.ttc    cambriab.ttf   cambriai.ttf   cambriaz.ttf   # Cambria                     6.81
+#cambria.ttc                                                # Cambria Math                6.81
+Candara.ttf    Candarab.ttf   Candarai.ttf   Candaraz.ttf   # Candara                     5.61
+consola.ttf    consolab.ttf   consolai.ttf   consolaz.ttf   # Consolas                    5.33
+constan.ttf                                                 # Constantia                  5.91
+               constanb.ttf                                 #   Bold                      5.90
+                              constani.ttf                  #   Italic                    5.90
+                                             constanz.ttf   #   Bold Italic               5.90
+corbel.ttf     corbelb.ttf    corbeli.ttf    corbelz.ttf    # Corbel                      5.61
 )
 _ttf_ms_win8=("${_ttf_ms_win8[@]}" "${_vista[@]}")
 
 _SEA=(
-#####################################################################################################
-# Normal         Bold          Italic        Bold+Italic    #  Full name           Version  Comment #
-#####################################################################################################
-daunpenh.ttf                                                # DaunPenh                5.00 Khmer
-dokchamp.ttf                                                # DokChampa               5.00 Lao
-KhmerUI.ttf    KhmerUIb.ttf                                 # Khmer UI                5.02 Khmer
-LaoUI.ttf      LaoUIb.ttf                                   # Lao UI                  5.01 Lao
-himalaya.ttf                                                # Microsoft Himalaya      5.06 Tibetan
-ntailu.ttf     ntailub.ttf                                  # Microsoft New Tai Lue   5.96 Tai Lue
-phagspa.ttf    phagspab.ttf                                 # Microsoft PhagsPa       5.96 Phags-pa
-taile.ttf      taileb.ttf                                   # Microsoft Tai Le        5.96 Tai Le
-msuighur.ttf   msuighub.ttf                                 # Microsoft Uighur        5.93 Uighur
-msyi.ttf                                                    # Microsoft Yi Baiti      5.97 Yi Script
-moolbor.ttf                                                 # MoolBoran               5.00 Khmer
-monbaiti.ttf                                                # Mongolian Baiti         5.10 Mongolian
-mmrtext.ttf                                                 # Myanmar Text            1.00 Myanmar
-Nirmala.ttf    NirmalaB.ttf                                 # Nirmala UI              1.01 South Asian scripts (Bangla, Devanagari, Gujarati, Malayalam, Odia, Telugu)
+#########################################################################################################
+# Normal         Bold          Italic        Bold+Italic    #  Full name               Version  Comment #
+#########################################################################################################
+daunpenh.ttf                                                # DaunPenh                    5.00 Khmer
+dokchamp.ttf                                                # DokChampa                   5.00 Lao
+javatext.ttf                                                # Javanese Text               1.00 Javanese
+KhmerUI.ttf    KhmerUIb.ttf                                 # Khmer UI                    5.02 Khmer
+LaoUI.ttf      LaoUIb.ttf                                   # Lao UI                      5.01 Lao
+himalaya.ttf                                                # Microsoft Himalaya          5.10 Tibetan
+ntailu.ttf     ntailub.ttf                                  # Microsoft New Tai Lue       5.96 Tai Lue
+phagspa.ttf    phagspab.ttf                                 # Microsoft PhagsPa           5.97 Phags-pa
+taile.ttf      taileb.ttf                                   # Microsoft Tai Le            5.96 Tai Le
+msuighur.ttf   msuighub.ttf                                 # Microsoft Uighur            6.00 Uighur
+msyi.ttf                                                    # Microsoft Yi Baiti          5.97 Yi Script
+moolbor.ttf                                                 # MoolBoran                   5.00 Khmer
+monbaiti.ttf                                                # Mongolian Baiti             5.41 Mongolian
+mmrtext.ttf    mmrtextb.ttf                                 # Myanmar Text                1.10 Myanmar
+Nirmala.ttf    NirmalaB.ttf                                 # Nirmala UI                  1.10 South Asian scripts (Bangla, Devanagari, Gujarati, Malayalam, Odia, Telugu)
+NirmalaS.ttf                                                # Nirmala UI Semilight        1.00
 )
 
 _indic=(
-#####################################################################################################
-# Normal         Bold          Italic        Bold+Italic    #  Full name           Version  Comment #
-#####################################################################################################
-aparaj.ttf     aparajb.ttf    aparaji.ttf    aparajbi.ttf   # Aparajita               5.92 Hindi
-gautami.ttf    gautamib.ttf                                 # Gautami                 5.94 Indic script — Telugu
-kalinga.ttf    kalingab.ttf                                 # Kalinga                 5.95 Oriya
-kartika.ttf    kartikab.ttf                                 # Kartika                 5.95 Indic script — Malayalam
-kokila.ttf     kokilab.ttf    kokilai.ttf    kokilabi.ttf   # Kokila                  5.92 Hindi
-latha.ttf      lathab.ttf                                   # Latha                   5.94 Indic script — Tamil
-mangal.ttf     mangalb.ttf                                  # Mangal                  5.94 Indic script — Devanagari
-raavi.ttf      raavib.ttf                                   # Raavi                   5.94 Indic script — Gurmukhi
-shruti.ttf     shrutib.ttf                                  # Shruti                  5.94 Indic script — Gujarati
-tunga.ttf      tungab.ttf                                   # Tunga                   5.94 Indic script — Kannada
-utsaah.ttf     utsaahb.ttf    utsaahi.ttf    utsaahbi.ttf   # Utsaah                  5.92 Hindi
-Vani.ttf       Vanib.ttf                                    # Vani                    6.80 Indic script — Telugu
-vrinda.ttf     vrindab.ttf                                  # Vrinda                  6.80 Indic script — Bengali
-vijaya.ttf     vijayab.ttf                                  # Vijaya                  6.80 Tamil
-Shonar.ttf     Shonarb.ttf                                  # Shonar Bangla           6.80 Bengali
-iskpota.ttf    iskpotab.ttf                                 # Iskoola Pota            5.94 Sinhala
+#########################################################################################################
+# Normal         Bold          Italic        Bold+Italic    #  Full name               Version  Comment #
+#########################################################################################################
+aparaj.ttf     aparajb.ttf    aparaji.ttf    aparajbi.ttf   # Aparajita                   6.00 Hindi
+gautami.ttf    gautamib.ttf                                 # Gautami                     6.00 Indic script — Telugu
+kalinga.ttf    kalingab.ttf                                 # Kalinga                     6.00 Oriya
+kartika.ttf    kartikab.ttf                                 # Kartika                     6.00 Indic script — Malayalam
+kokila.ttf     kokilab.ttf    kokilai.ttf    kokilabi.ttf   # Kokila                      6.00 Hindi
+latha.ttf      lathab.ttf                                   # Latha                       6.00 Indic script — Tamil
+mangal.ttf     mangalb.ttf                                  # Mangal                      6.00 Indic script — Devanagari
+raavi.ttf      raavib.ttf                                   # Raavi                       6.00 Indic script — Gurmukhi
+shruti.ttf     shrutib.ttf                                  # Shruti                      6.00 Indic script — Gujarati
+tunga.ttf      tungab.ttf                                   # Tunga                       6.00 Indic script — Kannada
+utsaah.ttf     utsaahb.ttf    utsaahi.ttf    utsaahbi.ttf   # Utsaah                      6.00 Hindi
+Vani.ttf       Vanib.ttf                                    # Vani                        6.81 Indic script — Telugu
+vrinda.ttf     vrindab.ttf                                  # Vrinda                      6.81 Indic script — Bengali
+vijaya.ttf     vijayab.ttf                                  # Vijaya                      6.81 Tamil
+Shonar.ttf     Shonarb.ttf                                  # Shonar Bangla               6.81 Bengali
+iskpota.ttf    iskpotab.ttf                                 # Iskoola Pota                6.00 Sinhala
 )
 
 #Chinese (Simplified)
 _zh_CN=(
-#####################################################################################################
-# Normal         Bold          Italic        Bold+Italic    #  Full name           Version  Comment #
-#####################################################################################################
-simkai.ttf                                                  # KaiTi                   5.01 Simplified Chinese
-simsun.ttc                                                  # NSimSun                 5.04 Simplified Chinese
-simhei.ttf                                                  # SimHei                  5.03 Simplified Chinese font features plain strokes similar to sans serif designs
-#simsun.ttc                                                 # SimSun                  5.04 Simplified Chinese font features mincho (serif) stroke style
-simsunb.ttf                                                 # SimSun-ExtB             5.01
-simfang.ttf                                                 # FangSong                5.01 Simplified Chinese
-msyh.ttc       msyhbd.ttc                                   # Microsoft YaHei         6.10 Simplified Chinese
-#msyh.ttc      msyhbd.ttc                                   # Microsoft YaHei UI      6.10 Simplified Chinese
+#########################################################################################################
+# Normal         Bold          Italic        Bold+Italic    #  Full name               Version  Comment #
+#########################################################################################################
+simkai.ttf                                                  # KaiTi                       5.01 Simplified Chinese
+simsun.ttc                                                  # NSimSun                     5.04 Simplified Chinese
+simhei.ttf                                                  # SimHei                      5.03 Simplified Chinese font features plain strokes similar to sans serif designs
+#simsun.ttc                                                 # SimSun                      5.04 Simplified Chinese font features mincho (serif) stroke style
+simsunb.ttf                                                 # SimSun-ExtB                 5.01
+simfang.ttf                                                 # FangSong                    5.01 Simplified Chinese
+msyh.ttc       msyhbd.ttc                                   # Microsoft YaHei             6.10 Simplified Chinese
+msyhl.ttc                                                   # Microsoft YaHei Light       1.01
+#msyh.ttc      msyhbd.ttc                                   # Microsoft YaHei UI          6.10 Simplified Chinese
+#msyhl.ttc                                                  # Microsoft YaHei UI Light    1.01
 )
 
 #Chinese (Traditional)
 _zh_TW=(
-#####################################################################################################
-# Normal         Bold          Italic        Bold+Italic    #  Full name           Version  Comment #
-#####################################################################################################
-kaiu.ttf                                                    # DFKai-SB                5.00 Serif style with Traditional Chinese support. DFKai-SB has graceful strokes
-msjh.ttc       msjhbd.ttc                                   # Microsoft JhengHei      6.10 Chinese: Traditional chars — Taiwan and Hong Kong
-#msjh.ttc      msjhbd.ttc                                   # Microsoft JhengHei UI   6.10
-mingliu.ttc                                                 # MingLiU                 7.01 Traditional Chinese font in a mincho (serif) stroke style
-#mingliu.ttc                                                # MingLiU_HKSCS           7.01
-mingliub.ttc                                                # MingLiU_HKSCS-ExtB      7.01
-#mingliub.ttc                                               # MingLiU-ExtB            7.01
-#mingliu.ttc                                                # PMingLiU                7.01 Traditional Chinese font that features a mincho (serif) stroke style with proportional Latin characters
-#mingliub.ttc                                               # PMingLiU-ExtB           7.01
+#########################################################################################################
+# Normal         Bold          Italic        Bold+Italic    #  Full name               Version  Comment #
+#########################################################################################################
+kaiu.ttf                                                    # DFKai-SB                    5.00 Serif style with Traditional Chinese support. DFKai-SB has graceful strokes
+msjh.ttc       msjhbd.ttc                                   # Microsoft JhengHei          6.10 Chinese: Traditional chars — Taiwan and Hong Kong
+msjhl.ttc                                                   # Microsoft JhengHei Light    1.00
+#msjh.ttc      msjhbd.ttc                                   # Microsoft JhengHei UI       6.10
+#msjhl.ttc                                                  # Microsoft JhengHei UI Light 1.00
+mingliu.ttc                                                 # MingLiU                     7.01 Traditional Chinese font in a mincho (serif) stroke style
+#mingliu.ttc                                                # MingLiU_HKSCS               7.01
+mingliub.ttc                                                # MingLiU_HKSCS-ExtB          7.01
+#mingliub.ttc                                               # MingLiU-ExtB                7.01
+#mingliu.ttc                                                # PMingLiU                    7.01 Traditional Chinese font that features a mincho (serif) stroke style with proportional Latin characters
+#mingliub.ttc                                               # PMingLiU-ExtB               7.01
 )
 
 _japanese=(
-#####################################################################################################
-# Normal         Bold          Italic        Bold+Italic    #  Full name           Version  Comment #
-#####################################################################################################
-meiryo.ttc     meiryob.ttc    #meiryo.ttc    meiryob.ttc    # Meiryo                  6.12 Japanese and Roman
-#meiryo.ttc    meiryob.ttc    meiryo.ttc     meiryob.ttc    # Meiryo UI               6.12
-msgothic.ttc                                                # MS Gothic               5.10 Japanese font features plain strokes similar to sans serif designs
-msmincho.ttc                                                # MS Mincho               5.10 Japanese font that features serifs at the end of its strokes
-#msgothic.ttc                                               # MS PGothic              5.10 Japanese font with proportional latin in the gothic (sans serif) style
-#msmincho.ttc                                               # MS PMincho              5.10 Japanese font with proportional latin in the mincho (serif) style
-#msgothic.ttc                                               # MS UI Gothic            5.10 The default glyph shapes of this font are based on JIS2004. This font also provides access to a set of JIS90 legacy glyphs via jp90' OpenType layout table.
+#########################################################################################################
+# Normal         Bold          Italic        Bold+Italic    #  Full name               Version  Comment #
+#########################################################################################################
+meiryo.ttc     meiryob.ttc    #meiryo.ttc    meiryob.ttc    # Meiryo                      6.12 Japanese and Roman
+#meiryo.ttc    meiryob.ttc    meiryo.ttc     meiryob.ttc    # Meiryo UI                   6.12
+msgothic.ttc                                                # MS Gothic                   5.10 Japanese font features plain strokes similar to sans serif designs
+msmincho.ttc                                                # MS Mincho                   5.10 Japanese font that features serifs at the end of its strokes
+#msgothic.ttc                                               # MS PGothic                  5.10 Japanese font with proportional latin in the gothic (sans serif) style
+#msmincho.ttc                                               # MS PMincho                  5.10 Japanese font with proportional latin in the mincho (serif) style
+#msgothic.ttc                                               # MS UI Gothic                5.10 The default glyph shapes of this font are based on JIS2004. This font also provides access to a set of JIS90 legacy glyphs via jp90' OpenType layout table.
+yugothic.ttf   yugothib.ttf                                 # Yu Gothic                   1.55
+yugothil.ttf                                                # Yu Gothic Light             1.55
+yumindb.ttf                                                 # Yu Mincho Demibold          1.55
+yuminl.ttf                                                  # Yu Mincho Light             1.55
+yumin.ttf                                                   # Yu Mincho Regular           1.55
 )
 
 _korean=(
-#####################################################################################################
-# Normal         Bold          Italic        Bold+Italic    #  Full name           Version  Comment #
-#####################################################################################################
-batang.ttc                                                  # Batang                  5.00 Korean font that features a mincho (serif) stroke style
-#batang.ttc                                                 # BatangChe               5.00
-gulim.ttc                                                   # Dotum                   5.00 Korean
-#gulim.ttc                                                  # DotumChe                5.00
-#gulim.ttc                                                  # Gulim                   5.01 Korean
-#gulim.ttc                                                  # GulimChe                5.00 Korean
-#batang.ttc                                                 # Gungsuh                 5.00 Korean
-#batang.ttc                                                 # GungsuhChe              5.00 Korean
-malgun.ttf     malgunbd.ttf                                 # Malgun Gothic           6.22 Korean
+#########################################################################################################
+# Normal         Bold          Italic        Bold+Italic    #  Full name               Version  Comment #
+#########################################################################################################
+batang.ttc                                                  # Batang                      5.00 Korean font that features a mincho (serif) stroke style
+#batang.ttc                                                 # BatangChe                   5.00
+gulim.ttc                                                   # Dotum                       5.00 Korean
+#gulim.ttc                                                  # DotumChe                    5.00
+#gulim.ttc                                                  # Gulim                       5.01 Korean
+#gulim.ttc                                                  # GulimChe                    5.00 Korean
+#batang.ttc                                                 # Gungsuh                     5.00 Korean
+#batang.ttc                                                 # GungsuhChe                  5.00 Korean
+malgun.ttf     malgunbd.ttf                                 # Malgun Gothic               6.50 Korean
 )
 
 _arabic=(
-#####################################################################################################
-# Normal         Bold          Italic        Bold+Italic    #  Full name           Version  Comment #
-#####################################################################################################
-aldhabi.ttf                                                 # Aldhabi                 1.00 Arabic, Latin
-andlso.ttf                                                  # Andalus                 5.99 Arabic, Latin
-arabtype.ttf                                                # Arabic Typesetting      5.92 Arabic, Latin
-majalla.ttf    majallab.ttf                                 # Sakkal Majalla          6.80 Arabic font based on Naskh calligraphy
-simpo.ttf      simpbdo.ttf                                  # Simplified Arabic       5.98 Arabic
-simpfxo.ttf                                                 # Simplified Arabic Fixed 5.92
-trado.ttf      tradbdo.ttf                                  # Traditional Arabic      5.98 Arabic
-UrdType.ttf                                                 # Urdu Typesetting        5.93 Arabic
+#########################################################################################################
+# Normal         Bold          Italic        Bold+Italic    #  Full name               Version  Comment #
+#########################################################################################################
+aldhabi.ttf                                                 # Aldhabi                     1.00 Arabic, Latin
+andlso.ttf                                                  # Andalus                     6.00 Arabic, Latin
+arabtype.ttf                                                # Arabic Typesetting          6.00 Arabic, Latin
+majalla.ttf    majallab.ttf                                 # Sakkal Majalla              6.81 Arabic font based on Naskh calligraphy
+simpo.ttf      simpbdo.ttf                                  # Simplified Arabic           6.00 Arabic
+simpfxo.ttf                                                 # Simplified Arabic Fixed     5.92
+trado.ttf      tradbdo.ttf                                  # Traditional Arabic          6.00 Arabic
+UrdType.ttf    UrdTypeb.ttf                                 # Urdu Typesetting            6.00 Arabic
 )
 
 _hebrew=(
-#####################################################################################################
-# Normal         Bold          Italic        Bold+Italic    #  Full name           Version  Comment #
-#####################################################################################################
-               ahronbd.ttf                                  # Aharoni Bold            5.02 Hebrew, Latin
-david.ttf      davidbd.ttf                                  # David                   5.02 Hebrew
-frank.ttf                                                   # FrankRuehl              5.02 Hebrew
-gisha.ttf      gishabd.ttf                                  # Gisha                   5.01 Hebrew
-lvnm.ttf       lvnmbd.ttf                                   # Levenim MT              5.03 Hebrew
-mriam.ttf                                                   # Miriam                  5.02 Hebrew
-mriamc.ttf                                                  # Miriam Fixed            5.02
-nrkis.ttf                                                   # Narkisim                5.02 Hebrew
-rod.ttf                                                     # Rod                     5.02 Hebrew
+#########################################################################################################
+# Normal         Bold          Italic        Bold+Italic    #  Full name               Version  Comment #
+#########################################################################################################
+               ahronbd.ttf                                  # Aharoni Bold                5.10 Hebrew, Latin
+david.ttf      davidbd.ttf                                  # David                       6.00 Hebrew
+frank.ttf                                                   # FrankRuehl                  5.10 Hebrew
+gisha.ttf      gishabd.ttf                                  # Gisha                       5.01 Hebrew
+lvnm.ttf       lvnmbd.ttf                                   # Levenim MT                  6.00 Hebrew
+mriam.ttf                                                   # Miriam                      5.10 Hebrew
+mriamc.ttf                                                  # Miriam Fixed                5.10
+nrkis.ttf                                                   # Narkisim                    5.10 Hebrew
+rod.ttf                                                     # Rod                         5.10 Hebrew
 )
 
 _thai=(
-#####################################################################################################
-# Normal         Bold          Italic        Bold+Italic    #  Full name           Version  Comment #
-#####################################################################################################
-angsa.ttf      angsab.ttf     angsai.ttf     angsaz.ttf     # Angsana New             5.00 Thai, Latin
-angsau.ttf     angsaub.ttf    angsaui.ttf    angsauz.ttf    # AngsanaUPC              5.00 Thai, Latin
-browa.ttf      browab.ttf     browai.ttf     browaz.ttf     # Browallia New           5.00 Thai
-browau.ttf     browaub.ttf    browaui.ttf    browauz.ttf    # BrowalliaUPC            5.00 Thai
-cordia.ttf     cordiab.ttf    cordiai.ttf    cordiaz.ttf    # Cordia New              5.00 Thai
-cordiau.ttf    cordiaub.ttf   cordiaui.ttf   cordiauz.ttf   # CordiaUPC               5.00
-upcdl.ttf      upcdb.ttf      upcdi.ttf      upcdbi.ttf     # DilleniaUPC             5.01 Thai
-upcel.ttf      upceb.ttf      upcei.ttf      upcebi.ttf     # EucrosiaUPC             5.01 Thai
-upcfl.ttf      upcfb.ttf      upcfi.ttf      upcfbi.ttf     # FreesiaUPC              5.01 Thai
-upcil.ttf      upcib.ttf      upcii.ttf      upcibi.ttf     # IrisUPC                 5.01 Thai
-upcjl.ttf      upcjb.ttf      upcji.ttf      upcjbi.ttf     # JasmineUPC              5.01 Thai
-upckl.ttf      upckb.ttf      upcki.ttf      upckbi.ttf     # KodchiangUPC            5.01 Thai
-leelawad.ttf   leelawdb.ttf                                 # Leelawadee              5.05 Thai
-upcll.ttf      upclb.ttf      upcli.ttf      upclbi.ttf     # LilyUPC                 5.01 Thai
+#########################################################################################################
+# Normal         Bold          Italic        Bold+Italic    #  Full name               Version  Comment #
+#########################################################################################################
+angsa.ttf      angsab.ttf     angsai.ttf     angsaz.ttf     # Angsana New                 5.01 Thai, Latin
+angsau.ttf     angsaub.ttf    angsaui.ttf    angsauz.ttf    # AngsanaUPC                  5.01 Thai, Latin
+browa.ttf      browab.ttf     browai.ttf     browaz.ttf     # Browallia New               5.01 Thai
+browau.ttf     browaub.ttf    browaui.ttf    browauz.ttf    # BrowalliaUPC                5.01 Thai
+cordia.ttf     cordiab.ttf    cordiai.ttf    cordiaz.ttf    # Cordia New                  5.01 Thai
+cordiau.ttf    cordiaub.ttf   cordiaui.ttf   cordiauz.ttf   # CordiaUPC                   5.01
+upcdl.ttf      upcdb.ttf      upcdi.ttf      upcdbi.ttf     # DilleniaUPC                 5.01 Thai
+upcel.ttf      upceb.ttf      upcei.ttf      upcebi.ttf     # EucrosiaUPC                 5.01 Thai
+upcfl.ttf      upcfb.ttf      upcfi.ttf      upcfbi.ttf     # FreesiaUPC                  5.02 Thai
+upcil.ttf      upcib.ttf      upcii.ttf      upcibi.ttf     # IrisUPC                     5.02 Thai
+upcjl.ttf      upcjb.ttf      upcji.ttf      upcjbi.ttf     # JasmineUPC                  5.01 Thai
+upckl.ttf      upckb.ttf      upcki.ttf      upckbi.ttf     # KodchiangUPC                5.01 Thai
+leelawad.ttf   leelawdb.ttf                                 # Leelawadee                  5.05 Thai
+LeelawUI.ttf   LeelaUIb.ttf                                 # Leelawadee UI               1.00 Khmer, Lao, Thai, Buginese
+LeelUIsl.ttf                                                # Leelawadee UI Semilight     1.00
+upcll.ttf      upclb.ttf      upcli.ttf      upclbi.ttf     # LilyUPC                     5.01 Thai
 )
 
 _other=(
-#####################################################################################################
-# Normal         Bold          Italic        Bold+Italic    #  Full name           Version  Comment #
-#####################################################################################################
-ebrima.ttf     ebrimabd.ttf                                 # Ebrima                  5.06 African
-estre.ttf                                                   # Estangelo Edessa        5.00 Syriac
-euphemia.ttf                                                # Euphemia                5.05 Unified Canadian Syllabics
-gadugi.ttf     gadugib.ttf                                  # Gadugi                  1.03 Unified Canadian Aboriginal Syllabics
-nyala.ttf                                                   # Nyala                   5.01 Ethiopic, Latin
-plantc.ttf                                                  # Plantagenet Cherokee    5.07 Cherokee
-mvboli.ttf                                                  # MV Boli                 5.01 Thaana, Maldivian
+#########################################################################################################
+# Normal         Bold          Italic        Bold+Italic    #  Full name               Version  Comment #
+#########################################################################################################
+ebrima.ttf     ebrimabd.ttf                                 # Ebrima                      5.08 African
+estre.ttf                                                   # Estangelo Edessa            6.00 Syriac
+euphemia.ttf                                                # Euphemia                    5.05 Unified Canadian Syllabics
+gadugi.ttf     gadugib.ttf                                  # Gadugi                      1.06 Unified Canadian Aboriginal Syllabics
+nyala.ttf                                                   # Nyala                       5.01 Ethiopic, Latin
+plantc.ttf                                                  # Plantagenet Cherokee        5.07 Cherokee
+mvboli.ttf                                                  # MV Boli                     6.00 Thaana, Maldivian
 )
 
-source=( ${_ttf_ms_win8[@]} ${_vista[@]} ${_arabic[@]} ${_hebrew[@]} ${_SEA[@]} ${_korean[@]} ${_japanese[@]} ${_zh_CN[@]} ${_zh_TW[@]} ${_indic[@]} ${_thai[@]} ${_other[@]} license.rtf)
+source=( "${_ttf_ms_win8[@]}" "${_vista[@]}" "${_arabic[@]}" "${_hebrew[@]}" 
+    "${_SEA[@]}" "${_korean[@]}" "${_japanese[@]}" "${_zh_CN[@]}" 
+    "${_zh_TW[@]}" "${_indic[@]}" "${_thai[@]}" "${_other[@]}" license.rtf)
 
-function build {
-    cd "$srcdir"
-
+function _extract_ttcs {
     # Tabs are essential!
-    # Шmportant: use real tab characters!
-	ff_script=$(cat <<-'SETVAR'
-	i = 1
-	while (i < $argc)
-		theFontNames = FontsInFile($argv[i])
-		cnt = SizeOf(theFontNames)
-		j = 0
-		while (j < cnt)
-			thefontname = theFontNames[j]
-			thisPath = $argv[i] + "(" + thefontname + ")"
-			Open(thisPath, 1)
-			Generate(thefontname + ".ttf")
-			Close()
-			j++
-		endloop
+    # Important: use real tab characters!
+    ff_script=$(cat <<-'SETVAR'
+		i = 1
+		while (i < $argc)
+			theFontNames = FontsInFile($argv[i])
+			cnt = SizeOf(theFontNames)
+			j = 0
+			while (j < cnt)
+				thefontname = theFontNames[j]
+				thisPath = $argv[i] + "(" + thefontname + ")"
+				Open(thisPath, 1)
+				Generate(thefontname + ".ttf")
+				Print(thefontname + ".ttf")
+				Close()
+				j++
+			endloop
 		i = i+1
-	endloop
+		endloop
 	SETVAR)
 
-    # Ignoring until FontForge devs resolve segfaults
-    GLOBIGNORE=batang.ttc:gulim.ttc:meiryob.ttc:meiryo.ttc:mingliub.ttc:mingliu.ttc:msgothic.ttc:msjhbd.ttc:msjh.ttc:msmincho.ttc:msyhbd.ttc:msyh.ttc:simsun.ttc
-
-    # Quotes are essential!
-    fontforge -lang=ff -c "$ff_script" *.ttc
+    fontforge -lang=ff -c "$ff_script" $*
+    rm $*
 }
 
+function _remove_from_fonts_array {
+    fonts_len=${#fonts[@]};
 
+    for (( i = 0, j = $#; (i < $fonts_len) && (j > 0); i++)); do
+        for remove in "$@"; do
+            if [ "${fonts[$i]}" = "$remove" ]; then
+                unset fonts[$i]
+                (( j-- ))
+                break
+            fi
+        done
+    done
+}
 
 function _package {
     cd "$srcdir"
@@ -349,14 +370,37 @@ function _package {
         conflicts=()
     fi
 
-    fonts=${!fonts_array_name};
+    fonts=("${!fonts_array_name}")
+
+    declare -a ttcs_to_extract
+
+    case "$1" in
+        $pkgbase) ttcs_to_extract=(cambria.ttc Sitka*.ttc);;
+        $pkgbase-arabic) pkgdesc="Microsoft Windows 8.1 Arabic TrueType fonts";;
+        $pkgbase-hebrew)
+        	pkgdesc="Microsoft Windows 8.1 Hebrew TrueType fonts";;
+        $pkgbase-SEA) pkgdesc="Microsoft Windows 8.1 Southeast Asian TrueType fonts";;
+        $pkgbase-indic) pkgdesc="Microsoft Windows 8.1 Indic TrueType fonts";;
+        $pkgbase-japanese) pkgdesc="Microsoft Windows 8.1 Japanese TrueType fonts";;
+        $pkgbase-korean) pkgdesc="Microsoft Windows 8.1 Korean TrueType fonts";;
+        $pkgbase-zh_CN) pkgdesc="Microsoft Windows 8.1 Simplified Chinese TrueType fonts";;
+        $pkgbase-zh_TW) pkgdesc="Microsoft Windows 8.1 Traditional Chinese TrueType fonts" ;;
+        $pkgbase-thai) pkgdesc="Microsoft Windows 8.1 Thai TrueType fonts";;
+        $pkgbase-other) pkgdesc="Microsoft Windows 8.1 other TrueType fonts";;
+    esac
+
+    if (( ${#ttcs_to_extract[@]} > 0 )); then
+        readarray -t extracted_ttfs < <(_extract_ttcs ${ttcs_to_extract[@]})
+        _remove_from_fonts_array ${ttcs_to_extract[@]}
+        fonts+=("${extracted_ttfs[@]}")
+    fi
 
     # Prepare destination directory
     install -dm755 "$pkgdir/usr/share/fonts/TTF"
 
     # Install fonts
-    for font in ${fonts[@]}; do
-        install -m644 $font "$pkgdir/usr/share/fonts/TTF"
+    for font in "${fonts[@]}"; do
+        install -m644 "$font" "$pkgdir/usr/share/fonts/TTF"
     done
 
     # Install license
@@ -367,19 +411,19 @@ for package_name in ${pkgname[@]}; do
     eval "function package_$package_name() { _package $package_name; }"
 done
 
-md5sums=('1e0acd79a5a6e269a3421dc00d9aa722'
-         '38de9acc2d1d8318e464930df1b8ca2d'
-         'dec6705e773e544f6f19a150f83d3114'
-         '3d6c0be1f2859fe527795c4d7d709d76'
+md5sums=('08076fbc949659080b0f8744f3729a26'
+         '7a1f1bc412760200024dd4fbb782da27'
+         '8f81f8b9950b043911f7a0b3615061f3'
+         '0dc592c1ab4ec94d8b1909496b15c841'
          '1f704893145d21747186116f85b2c062'
          'cfbe2858223b5d6f0fead9583b07f3fd'
          '6548235ee4b7ca0b8a7d464546fa5ca5'
          '1d32338d1c97538b798ca8563f70d39a'
          '8f87bcf26c27af0830c28c30a35bb211'
-         '2d1f895adcb5d23e9300d32c1f78104e'
-         '391e637d4610de7c1f1e4dcaaa44c74b'
-         '8f5e2cc6baf642e7dea9ebe68d129987'
-         '4f0fe9bfbbff9647ccc24d00a80ecf16'
+         'b6039fa097882e218ee2578c0d0aac31'
+         '3ffc90f7396903a40cc66bc157bf21ee'
+         'c13928bee4ee33e7b3662bd63d24fbe4'
+         'c66c228e2922d8f400b8de2fd2be00ea'
          '45a9841a7f5ba7a780f0a804553cfce7'
          'e2ae623d5f37a67aaf66673fc5be6ea7'
          '9f6c62f1f041ca9f3d69ac76684314d0'
@@ -391,63 +435,70 @@ md5sums=('1e0acd79a5a6e269a3421dc00d9aa722'
          'ed07815509f9c255b6e0f66c7910eb97'
          'bcccd674c3fe808a4b01b8914c6898d5'
          '5f10daf510c3cb9ccfa737cade9c5a90'
-         'a5de9a11d94b2cf305d13a32d1088660'
-         '8361c7922287c672493a11c10ffedb32'
-         '363ce725d6c62520d087cd583c2f63f4'
-         '3ee4f47946aa203f078877fd6f6427c0'
-         '3eb766b15f377d0956685ce734063d30'
+         '195875065c5b39f21bf02c19b456e6c3'
+         'ca0f4f6cbe091b7e72e46f58c8fa1768'
+         'd872799430da10fc39041a01ce9da39a'
+         'c71db8e1b4141ea96f3bafadf776601d'
+         'fc67dd3a4e36a1c4129f5a87c3964ad0'
          'c455d94eee43dc4ceeb83c0c0fd0d4c8'
          '4ed8298204138b08c1e73d2d9a6cba9a'
          '5c452fb7a0f5751f4e94e9d84eb01154'
          'acd33fd0ea8c011932aa4f3ac713663c'
-         'f99ea84062835b8d7ac4c68f6acf5b7e'
-         '1fcaecda063112df9165fb6ec00882bb'
+         '3922dbc67cd4b0f95955a02787a17d0b'
+         'fd6b9d0638ef33594bb6449ae380693a'
          '452133c98458128fe74e982078460cab'
          '5d51eba86e9217c97559947f2d01f53b'
-         '886dc601b2adb01bbfe8a4facf9d566d'
+         'a7e432d8873d584fe29fa20d46b634e8'
+         '4e5950a47f09b85e2a0ffffb21e0a762'
+         '2b01c6caabbe95afc92aa63b9bf100f3'
+         '11fd79bcf7943677aa0a7217a8e19470'
          'd6a449664f4fcbec971dc5b92ff7801d'
-         'ae4f7684dc1c509accc0d295f7487a2b'
+         '5040e8da248eedac256a765b697e6735'
          '1770fbba68d5afa129c8243ed92b0c1c'
-         '073c54deab691dba98be14fe4fea8278'
+         'bc4ea50de4dd5dc42b32a0a6d0cd990b'
          'c5e631d3da2bdf8ce9929ae794843a06'
-         '437c3323b83093ccb16abbf197bb4e40'
+         'af96fbf7096b608480f0df146bfb8646'
+         '164ff6ff28c62089186dc097ae48d2b8'
+         '5dbde7b0804b8c3c996ec4fd06d93885'
+         '2e4c9266278a6eccf131b6683ff3ca75'
+         '4bd7ebd58fbcd774ffa37b9320275baa'
          '4c8aa8124876afd5474fb94d53785536'
          '9629034e291841f941497d4a365c01f7'
-         'a2b250ae6a2bf656d77d908c8fd2bfdc'
-         'e04520b1269ce0ab75e2ec2b1fd80782'
-         '878a4f7dd749d2484386e1c994ded1da'
-         '3c8fa6e342a058359f85fbd7722c6144'
-         'b24f0a2dc431774a60aece53a0de1bdb'
-         'f617a107c4509b8c44e5747920a52df9'
-         '1abd1c73463dca1a3e18006ba34ad4ac'
-         '8b3f07fcea987ce38c83246fa6175cd3'
-         '4c98e9ed8ddca5e465f3340f833a616e'
-         '6d953d3bbe8817cd2b004dc11ac9f1d5'
+         '84d6903f8917a1bf7f65195a9b016812'
+         '45f081257d0306ecf70736a7a2ffcc66'
+         'f4f3f3ad7a5edad611337b1fb9e2b66b'
+         '193df3f8cbb23df49b780007ab4bf1e8'
+         'a9f1101d4758b9cdaf312462a417bb86'
+         '5e7983a0836886b5fdd4c01e61a7b84e'
+         'd866b4f2ff8ff64c258d78f5069a195d'
+         '48ab12b53456a65c1460d400c677cb7c'
+         'dc9b6130661d97afb20c57871a28ec5b'
+         '6148338d755c7727f9f0fe62fdd0a4be'
          'ba34b303291e36596759eb46ad9c51f2'
          'ddbe52e2cfdcc2b8c9c4ab8de872a325'
          '85e38a5e32b54e416c4b437b59501d31'
          'b8d06d04e2d848ebcdd428cd8125f211'
          '40a90d72da61d7c609c9a4c4bb37c710'
          '68c74934563bf4afa50793c67bd19b24'
-         'baf2d27a2cc7aea124138fb8b4fb5b4d'
-         '8879a4caa29c42ce616cd5f172299366'
-         'a2e4c0b388a3013015349a2aee18fe38'
-         'a3e6f73440d8535c2c7c43489e942a10'
-         '333ce7de4d889233dea963e16f547487'
-         '2c03a94cb796eb012908069335c98252'
-         '6ede9249499bba99886e63efb89eac37'
-         '081c24bfc5625fd86e7aa96d2599d869'
-         '7e32ca996d7f588ed65551a37ae145ed'
-         '6036be2d769db6a0f1918cb65b48b89c'
+         'b8153b3166e6cdf1cbe716ebd91b9a80'
+         '8c8905b9e5a727f74debd5a1519544fd'
+         'd980c8a941686affdb937b888917d98d'
+         '510e8eef6fe06f5602df33350bbd660f'
+         '0d717c4bf80cbb556bf87777fef7d09e'
+         '02dbe5c8b2af773ba84218492936326b'
+         '1b76436f80775f966d7a8d6ba101afce'
+         '8324a0b4d91c2fb5b96e3b97b2268f82'
+         'ad72f74d17852eb07cac6832b1f0161e'
+         'dd96d5bd1ac2b1d4236f68a4f77affeb'
          '8daa0f2304ee100fe3888d5b7307e64f'
          '702d8433e65d57e2612d01f1db078242'
          'f4ab481e2d12c0321cc1907192da90f0'
          '44b0a478d3b790698f52828bbf6b2b68'
-         '2b96269935d724df38efb541ee391f8f'
-         '3ff4f49424db1e955ca167ce06a0dfd2'
-         '5409c269bd43ed6daece60eaa546a02c'
-         '242915b2e93efd217abef857cc3d3ed1'
-         '39d51726a8c8b7eb4bb6fab61d16841a'
+         'fb505e28b6d130f08fe8f070e0d6b1b8'
+         'a029870eeb5b0f5978e4efa1008d239b'
+         '5edcabeaacc62c4d8c7a8a2c281db68c'
+         '110f4c8c3e0db9bd6f4c546f1ed9c023'
+         'd145e0da42db9c9a2277fed0ad3bd723'
          'b411b0999020c9c25b8151e359197150'
          '68948ea9bc8b232cc5664e2aab39c80c'
          '1ad619060822679a34db35a498f98ecc'
@@ -455,25 +506,25 @@ md5sums=('1e0acd79a5a6e269a3421dc00d9aa722'
          'c87f06ae40c78321844f2eac8b51737f'
          'e6c0e179deb07f3fc7a6d0d7a2a77247'
          '6c5e3e581b522258be508b4d8868025d'
-         'baf2d27a2cc7aea124138fb8b4fb5b4d'
-         '8879a4caa29c42ce616cd5f172299366'
-         'a2e4c0b388a3013015349a2aee18fe38'
-         'a3e6f73440d8535c2c7c43489e942a10'
-         '333ce7de4d889233dea963e16f547487'
-         '2c03a94cb796eb012908069335c98252'
-         '6ede9249499bba99886e63efb89eac37'
-         '081c24bfc5625fd86e7aa96d2599d869'
-         '7e32ca996d7f588ed65551a37ae145ed'
-         '6036be2d769db6a0f1918cb65b48b89c'
+         'b8153b3166e6cdf1cbe716ebd91b9a80'
+         '8c8905b9e5a727f74debd5a1519544fd'
+         'd980c8a941686affdb937b888917d98d'
+         '510e8eef6fe06f5602df33350bbd660f'
+         '0d717c4bf80cbb556bf87777fef7d09e'
+         '02dbe5c8b2af773ba84218492936326b'
+         '1b76436f80775f966d7a8d6ba101afce'
+         '8324a0b4d91c2fb5b96e3b97b2268f82'
+         'ad72f74d17852eb07cac6832b1f0161e'
+         'dd96d5bd1ac2b1d4236f68a4f77affeb'
          '8daa0f2304ee100fe3888d5b7307e64f'
          '702d8433e65d57e2612d01f1db078242'
          'f4ab481e2d12c0321cc1907192da90f0'
          '44b0a478d3b790698f52828bbf6b2b68'
-         '2b96269935d724df38efb541ee391f8f'
-         '3ff4f49424db1e955ca167ce06a0dfd2'
-         '5409c269bd43ed6daece60eaa546a02c'
-         '242915b2e93efd217abef857cc3d3ed1'
-         '39d51726a8c8b7eb4bb6fab61d16841a'
+         'fb505e28b6d130f08fe8f070e0d6b1b8'
+         'a029870eeb5b0f5978e4efa1008d239b'
+         '5edcabeaacc62c4d8c7a8a2c281db68c'
+         '110f4c8c3e0db9bd6f4c546f1ed9c023'
+         'd145e0da42db9c9a2277fed0ad3bd723'
          'b411b0999020c9c25b8151e359197150'
          '68948ea9bc8b232cc5664e2aab39c80c'
          '1ad619060822679a34db35a498f98ecc'
@@ -482,131 +533,143 @@ md5sums=('1e0acd79a5a6e269a3421dc00d9aa722'
          'e6c0e179deb07f3fc7a6d0d7a2a77247'
          '6c5e3e581b522258be508b4d8868025d'
          'd44e7660a481c4301fef58738e6b0e09'
-         'ba372cb7ef918164f520ebb0a693006e'
-         'edeaf9e7f4404f7cd577c7628cc56a08'
-         '09472561d98bb662466d0fd093e9c1e6'
-         'd0126c33d3fea2ecb01cd91b8160129c'
-         '7cdc198e3527bf6c5ca330a70278f310'
-         '6f8beb62aeae3e7ffd3dbf342f4d4253'
+         'f4ea18dbd4384a85992e2fba5a9a2755'
+         '6833fd2ecb2c52169cae26a42b7203d0'
+         'b44376c9075d1504325bc3ec90dbb6f4'
+         '913cc34104f91f98bec42574c473c09c'
+         '3aa23555dfcbe82a90885edd2a0d5080'
+         'f4b07ffa9f31914ce26e249ad335e218'
          'af53b53dcea967bd95b045bc5f7aaa86'
-         '3d3aa0c809a54d4aee31bd46acaab29a'
-         '04848fe193cc29ebb136c62e4e9d86e2'
-         '4cdcbaebff67417de67435deb061b789'
-         '3c1a440c0da3e6484b92282953ca3555'
-         '8d7367b9ce52c725c1f8fb96cc0c8829'
-         'd432ed840a9a13992897dde5f803bd17'
-         'ca7f7cedd1df47077bfcf74dea2107dd'
+         '5fdb768036f48f4d90757979d408c8a4'
+         'a1f198485a5d9c7e5c179400cec0bcdb'
+         'f12b89a259e0127daaed5068b08cea0d'
+         '1f8883a41e786677a14066f72deaa43e'
+         '26d06974844e151d41d653d06ead6eb3'
+         '2b03849be7b74fff32bb7694ae4680dd'
+         '064398293fbaae15e5ade02a1c2cdf53'
+         '239f82bf0cfb3410e88880111e9b3a6e'
          '405b972928c4b2e19d54034f6b02d709'
          'f67ffb5a32e345123b6e22aff1544a47'
-         'd4669f57d7ee1cb1641b33692fbbf11a'
-         '3cd2bb8a3d1c7fc15eef01f1adc4c071'
-         '706d06a0c45362744dfdc2896366bd31'
-         'd1fcc5ac64e9b52c6e63f53f59ac8d80'
-         '0b5daaee28ed20474e5b2f204add18f0'
-         '75e6ef1b533b46479e1390bf8f887603'
+         '3c35be3152cc389a17eb8bb5678be375'
+         'cd605f29105ecf29f7b2391361afa7ce'
+         'afbeedfc9acc9bbe9cfd599a22b308d0'
+         'fac95353a86abbed9eace647753649aa'
+         '1acc5a25e322baac7580349f55167ec3'
+         '62cde82faa7e2feca7f77774e9debbf7'
          '5a68a4e0bd54f918326fdcf96028e3ff'
          '119688cc24c7a1c78a469b0ed365edd7'
+         'd50d18fb35676d937e58d98b184a71bd'
          'c9ebe11cbee5b011666eeffa9a549f6c'
          '1ca7356ca863431f36aff1647a76b918'
          'b01bdacdd24858fac6bbe36c69eb281b'
          'b4ece38d8537d1a15ac9d133353d2631'
-         '0a87dbbedf7f74b08ef4474df817603d'
+         '0243e1b2756076047468049f20df479e'
          '95ecc0565801dd1bf141999d2c6a773b'
          '3350b74ee179d80520af3ebee4349ae7'
-         'feffee027a2741a805fc4a1fbf8cdeec'
-         'dd65023bb564646bd667f15a4ca3615f'
+         'b69d80cc66dd8caea9341129fd527bad'
+         '1dc00136983c88081a23beb6371e1b04'
          '41b542e60d48fe9ce55f52cca935cf8f'
          '1ac7418067be30f0bf726abff6487f8c'
-         '0723999ddc6b4b922ec011b475f07d9d'
-         '8d39983818afbd9cbd8927b037588e5e'
+         'b9563a8d78c5662ebdd0091af73a1881'
+         '88dd96d6c1979c106e70c4347e4e9657'
          'f4fde5baf005269c9ab6edb4fc24025a'
          'dbb5d50716af7c45dd357a6a585d7a9e'
-         'bbb263a37fb063b359e33887b6a4f438'
-         'a4df3d010a6050b0e9cf0fa936a89d29'
-         '812829dc374bf32e984a2fc3f45364b3'
-         '0f27d0f170856e6bda9eea60f7bca0b0'
+         'fd05cde16e149f89102560c1d2634ffc'
+         '978de217332af3770ca38a5810078f03'
+         '57b8785d72a033686770ed4462539518'
+         '683719689ce3635687532089a45d510f'
+         '2790b726c7bf4c97c59a00ad7f477d01'
+         '81e80101d01e14414591e4b899099483'
          '982509f4c25a0ac0f4e368e222e894fe'
          'fde85c81a1b925fac046e0c916f04847'
-         '8da139ade3e81de0bbe8ffe30a8e3099'
-         '08f7717ade19b78b48e02744f9b13f2e'
-         '9ae66cdfad1a6456c4687b9133c09c3e'
-         '5d6668ab1003220bf03185971cc731b0'
+         'd2e686b918b3707d1bd1a8bae5be8c6d'
+         '275160d2e264cb4ca3aee67208f45597'
+         '416fd5586df11a096a8dc42d90bbb59c'
+         '1ea3d505273e849eb6177d56ead0fea7'
          '79e95205706c61bfe684c3a00ba5f870'
          '0c5496ca205ffe62b69da242c6cd1170'
+         'e587ff1ab1a23fdeee65c351de5ffde4'
+         '1050d2613fe00e50ef8db4206abea536'
+         '8c0c4b4cd2490679c500e7964cbe3446'
+         '3886b750fc0bdd77d9904463b2ff2f31'
+         'fd003f16a9c2a89271eb780bf789f073'
+         '785253776017c38737d1f9f3d8f8df9b'
          'bbfaa12767e15e3f94ea902402527b17'
-         '5505af031d79715c8663fbed0f7ca7fd'
+         '0bfc61b8c2c21ee1ffa416e0982f96c0'
          'e54ea8e978c319647285100ebcabb037'
          '127efc862e34db7d79b5c9c68ffba19c'
          '2ecbfe1d9bfc191c6f15c0ccc23cbd43'
-         '5e42bcb1a2f001debc82305025461bc5'
-         '754b8ca1a3bc662247a948adcaa91459'
+         'cec7016379845916302d3cf8660e27b5'
+         '3c504f1a05f0330b6352517229318dd5'
+         'fd474ff7440543ade9b2b8fe9982a51c'
          '831990523227b528157bb99b63f6b45b'
-         '3132d56329d73980d5fd547ea7271a98'
-         '5d1a0d45e04ebe0ef8c7a44e1ca46b56'
+         'ce5fed6a7e397f3d4c92bcd6b60603b5'
+         '2fa65bfad147467bbf1385b05e5a5c4c'
+         '22b430344f3794e6c7f6b8e700fb25b4'
          '0f833110f12084efc38a3fce20c536b1'
          'a3272cf4d7504b5149a7f1df5701f21a'
-         'c3936597ba7b66a50395c34c2f6ddc7e'
-         '7de81d401f7296a6bc91ae1a22f61454'
-         '28036b73523a9611b5462394b96982d7'
-         '922c69f8bc91cc1fbe399bff2763f94a'
-         'e6d787ca7e5e22fcd2e96ef16ceab535'
-         '95e2fd1b367ddd8a4f096baf3146c481'
-         '35010e03d04d3517f4b083bb2741dd56'
-         '5f6ed84883c73a8e9b871696553f0735'
-         '5a7e248e9904665bff2ed61eabfda95e'
-         'f1c7dba4cfe491c65ac2c224211dea88'
-         '49b8a04d266f07aeee9502844866bbea'
-         '80d3c02fdfa4e1addaeabbddb2998e3f'
-         '97a691acff5583b5bf9898e912facf1a'
-         '3ea7a1100614e84e44139e2c689373d0'
-         '1f00634e4b14e1c850f7a6cedc9abfc9'
-         '97234c3d16113891ca7d34225854a4c4'
-         '0657a2cb45e432a9240e934c88a5b048'
-         'a67fb83da88e5bc3948c66298657fdb5'
-         '334188a2bfdcbed1732f1f5d3f9926aa'
-         '3b98517806f22c685f5aeeda21c424da'
-         '3caa929ecdb555261d42cedd40b7cca7'
-         '2a6ccae36b0e1df8ce2feb25549b14e6'
-         '0e49d01dfa7eb7c78aad0dd50fc42ade'
-         'afa8ac9764369f076613bdc560adb1a1'
-         'bb967b84010cc6f6bd067ca24d2e0f61'
-         'c9d9dc80a14553d1537a810aa9274b1b'
-         'bdab91abf0d4de49395f357333bf4d3f'
-         '4dcefb243cda43847e8af38ec0d5713e'
-         '39445d1352b1a73d5ce935066138e7c3'
-         'eb50dd97aad245ccad2b898483bf9268'
-         'de58a36b91c830a97897dc4cb00c9e7e'
-         '4e24c34cfe38c779c97dc5c88bdd5d4e'
-         'c9106b754d1358c2eef862963b35e4e7'
-         'c2f87ead12c0420d19fd944d4a409787'
-         '70a3e6d215adcfd3aaa722b732e84ca0'
-         '170585fb55659d5577932b9e2877431b'
-         '8687738851acc1c4cd0e2317c0cf8069'
-         'aec55e3620952c7381d7cd462c52257b'
-         'cc6c99b66a5b4c4e82ff2c6ed95077b4'
-         '3cb74fe6198ee7b4e4f675aacf265618'
-         'b50ef16c35ec7487935d84bde8c770d1'
-         '5e9f0667fb361414006555937ea5e053'
-         '070f54e1790ee0a495de46729b974b57'
-         '764f1693a1b650f28a9de87e4bf26c5f'
-         'fc8825bd36bbc597d3dfe69f43fa1d0a'
-         '8b278d0dde318c103f0a6e48e28cf979'
-         'bd62018c47c6141847cd00dcf20a215e'
-         '2e571e571f0815b5e0488d05b3b0bd15'
-         '0028965ad4f00a50fb734256f882f8c2'
-         '16524d39509891d28a9c54ff90015ca8'
-         'dd4c3fdecbe653539dcff65e3359d837'
-         'ec2fd5c5e8ee0f866a5db50f7184e3f0'
-         '91e8bd036d529a8c5cab178dab22f561'
-         'cd3ee79a96eb48acedc65a5f00c3f1c2'
-         '1059ad38e2a3bd334504686a2901eedb'
-         '89472d248b96ed4271ee74c7e6cdbe9d'
-         '7a6cd3b905e2cf67ec81a58d1284ee17'
-         '3239d4ce37dc032f69b9d20ce4d1b094'
-         '4659d2f8c0a7b29bbb90a3dd48027fc7'
-         'bb6a3523f05c7657e9d4f579b91c5925'
-         '5ac608dd341653cec6ed7eb33d6522ec'
-         '67a5931beaa0bf6f56505317dcedb218'
+         '2d54759d91a5d486c978a1b91d3bfde5'
+         '65d8a5aa466663fcf6efe14fc61c13b1'
+         '48121ad38e651398285eb4dcf6b9eaaa'
+         '50f2b4170f7b8a72cbc772cb2e320ace'
+         '500217bc47ef109d09f150e2073d724a'
+         '37f912ee78901fa08d2b2fa9d7dbb2f8'
+         'a507ad0e94cd89810896f76a352b9df6'
+         '95c6a3a3407faf4a1ed4fa2e9a195004'
+         '5099b82ed5b9dde6814754bde7d0c504'
+         'bbbd6de916640591eccfd8a4e912f992'
+         '49d646c3ef4b1ed896e49ccf5325b800'
+         '68befc880d754b0cfe9c5bb209ed3ebe'
+         '0f94a65c93ff58c2f324f0594f55d782'
+         '4e4d7ff5efe276f1757c0867572fdb33'
+         '4733d247a7a07f496e3b94b392f0c203'
+         'e12ad0b1dd20f58d32476a246903e253'
+         'bd457d8526526e71b33c3279a3788172'
+         '791776f21df91d5606ff49663745de3e'
+         'c9fb106baebb8adefdc9d370a96d3d6b'
+         '96ef6dcc96e593c1a113c832c9a8b82b'
+         'bd62ec46ec3bd0e32b02a1fcb81bf043'
+         '24a692e78c11789c4c6f768ff6b5b3d3'
+         '99c9e9acd0a9f1d5a4d436d6d4099aa3'
+         'b2aec25686fc087af06384a7b3ab74a9'
+         '7f046e683696686a23d551b1c69d2303'
+         '68a1af08166c78ae1fcbaf971886c283'
+         'c6eb582ab913ee2842bd3b15e23d7d7c'
+         '681a9f4132d242d3fb8f0048df0a76f6'
+         'b2054e959316918390077274332377d5'
+         'debf4c986b4b5528a88fb7a72336b3e0'
+         '15049f6076f90570cd012dd226bb6d26'
+         '74749bd51b54a01a02b8ba74dd37aff3'
+         'bf86686c6f3f2ee640e6019922432386'
+         'acab3807a5a8502710032efb0b1c2ddb'
+         '83ad1bd9bdd341fea84dcd285212a453'
+         '19575391e2289ae658454921d5fd8463'
+         'bc02c3e619a487aad5825bf9f9e88ddc'
+         'bafbb415cd758b732fa0cccb000ae77c'
+         'f7e97400affe286d6b4d9e142c4f9846'
+         '95811ff56ebf0f89535738c5ca8eb12c'
+         '6db568b723aa618b90e5e6c77a026afa'
+         '7956cd40a84b91d5df8d23073902f496'
+         '953111234ea5faac8b6486ab1423a48e'
+         '799cb35adc18f853fab834463fa20d5f'
+         '9008ac9fb7278e237bc50ddbd702a5a0'
+         '6cc72c12adffdfd01ad81b53ab9fea99'
+         '00ff0b28f9b3ac4393603f02b6eec9d1'
+         '307a26725270a2a1a284703e09dd13e6'
+         '116aaf3342d5e4ad6e89a7dfbeb396d0'
+         '8d8099e6f22fe7c858ad4488a5fecf77'
+         'd4ea2064eeb78448fe6e72926d4e622b'
+         '36598749f634970f509702f6f9b49e4a'
+         'b8cf9a60323cbec42ec805b1b993e833'
+         '4d1790be9369efaad00025e1f9215a44'
+         '1205701c849755d00a4eb4aef0a477cf'
+         '8816cc0e89cb04f6c1d2e7f0c08df4f6'
+         'fc8a99d4f8848b7caad46c05c77418b6'
+         'ae7c75c7daffa3a66f7391ee9e273163'
+         'b7d1e76f97777bbb22765bf8b3dd71ad'
+         'b1c06a47a40154f1c5e88df939689693'
+         'b27d4a04c3ac6132fa975677ec0c8b7d'
+         '0b37adffb6ad6948c1e91e0f819f7c19'
          'd377b9809c76e4c23fd1220ec6b53d68'
          '45c0a614c6a6cd1533a79483d0b4654d'
          'e1beec2f30e6fc4e89a9c58ca9a9de73'
@@ -615,14 +678,14 @@ md5sums=('1e0acd79a5a6e269a3421dc00d9aa722'
          '0ca38fd8b36f42551016799eb262823b'
          '2e6f2270914cff35e0c7aef5f6ebd82c'
          '11ce603207f2546af540c4d1c27d287e'
-         'ddca0eac084a0d438fc60aa310b66b31'
-         '2dd7f1672fd7f3b4608baa334ab9059c'
-         'dc29157237cb5e7f6fac4c58029953d5'
-         'b89c8729b39065ee275beedc13fe7a4b'
-         '9d89303c895428cf4a585d0a937f033e'
-         '6175f89f7539b7a68ea9528fe48c2370'
-         '2fec0470dcaac02b4cd2ebc6a694acf1'
-         'fed576f140815b94c793e22c991c2502'
+         '7454e3e89f89bbaa747c0a2e93e656f6'
+         '51a3b1a1ef5fe4b3d9c24de83e2fe65b'
+         'f0c9c2de0aac95a08f6155f730ce628f'
+         'ad6ae7590b0aad9cbb62703da5830b67'
+         'caca95e284317fc356addc85a00e0124'
+         'ae3f3a84c1fba2f4e13bddc868fc47e9'
+         'bcaf1685fa5d19a68ce6e5c49c345cba'
+         '7f1fd0d8d1c19fdb5da6dd5053a0ba36'
          'f3b22ecbd734443a5c99b9908eeaeb7e'
          '85eb84d8b56261f6f4ca511f3b99f0a7'
          'b919b4e8df73ef06e6cdfc49ed20e288'
@@ -633,17 +696,20 @@ md5sums=('1e0acd79a5a6e269a3421dc00d9aa722'
          '9b17af8c8e352ab66c5772c171871c28'
          '63921fe40d60c5bd6eff14f10065bc18'
          'b09b497925ae99f5b58fb854e1056f5b'
+         '4a941d640a347d3876e3c606d6ec0e2b'
+         '7db2e965f0dd2119910c49fe739e7a4e'
+         '142737a14ac26b5bb63f275d143dc5de'
          'ac39fdef0e9d11d8eec9644491d67e95'
          'c404020f4ee57d612f51c6514527f456'
          'aa1670c15c9ee445c6b27973de080f08'
          'e8db0680922a406aed2a21c0576f295d'
-         '5519f156b480e952712b20991317ecf1'
-         '0c9ea7edae52522a3db685416dc0dd34'
-         '0bbc39244ed40871e67541d9f7f35569'
+         'fb42acd18639b831d1fa6f4fbcc148bc'
+         '5c25912fa6012e177576e2871580e270'
+         'e7a7da92d64a17be9d79dca87e818a15'
          'b9423634d027b085c84cee26e13db70a'
-         'abc0bef3fdd877abe64aa81d035548a8'
-         '428896fa5b8ccceced61f4092a19bed9'
+         '3f3f1a887702b525cda01f7cd776b241'
+         '9e1c24a8ed076a03e4200225fd010d9f'
          '9a75b65bbb8757301cf5bf5a54c8df2a'
          'a580c429ba5130a697350dbb5fe64927'
-         'e82263c736c3fb0631639571c34663ca'
-         'c70dcf29d5da576587eee25911f06321')
+         '8bfeacd2fee6af7c3d4b49686857d814'
+         'cec0479c5a22342bad85b852dbbc6e3d')
