@@ -19,6 +19,8 @@
 #
 # On the installed Windows 8.1 system fonts are usually located in
 #       C:\Windows\Fonts
+# and license file is
+#       C:\Windows\System32\license.rtf
 #
 # How to acquire fonts from Windows 8.1 RTM install medium:
 #
@@ -29,16 +31,12 @@
 #    Fonts are located in 'sources/install.wim' file on the ISO, which
 #    is a 'Windows Imaging Format' (WIM) archive.
 #
-#    You can extract WIM using wimlib-imagex ('wimlib' package from AUR).
+#    You can extract WIM using wimextract ('wimlib' package from AUR).
 #
 #    Put the following script together with previously extracted
 #   'install.wim' and execute:
 #
-#       #!/bin/sh
-#       mkdir tmp fonts
-#       wimmount install.wim 1 tmp
-#       cp tmp/Windows/Fonts/{*.ttf,*.ttc} tmp/Windows/System32/license.rtf fonts
-#       wimunmount tmp
+#       wimextract install.wim 1 /Windows/{Fonts/"*".{ttf,ttc},System32/license.rtf} --dest-dir fonts
 #
 #    Fonts and license will be located in the 'fonts' dir.
 #
@@ -67,7 +65,7 @@ makedepends=('fontforge')
 provides=('ttf-win7-fonts' 'ttf-vista-fonts' 'ttf-ms-fonts' 'ttf-tahoma')
 conflicts=('ttf-win7-fonts' 'ttf-vista-fonts' 'ttf-ms-fonts' 'ttf-tahoma')
 install="$pkgbase.install"
-PKGEXT='.pkg.tar'
+PKGEXT='.pkg.tar' # because XZ compression is awfully slow
 
 _ttf_ms_win8=(
 #########################################################################################################
