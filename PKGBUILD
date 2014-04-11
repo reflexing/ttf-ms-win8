@@ -16,7 +16,7 @@
 # Please consult Microsoft license before using fonts.
 #
 # You can acquire fonts either from an installed Windows 8.1 RTM system
-# or install medium. Any edition of Windows 8.1 RTM build 6.3.9600.16384 will work.
+# or install medium. Any edition of Windows 8.1 RTM build 6.3.9600.17050 will work.
 #
 # On the installed Windows 8.1 system fonts are usually located in
 #       C:\Windows\Fonts
@@ -55,7 +55,7 @@ pkgname=($pkgbase $pkgbase-arabic $pkgbase-hebrew
     $pkgbase-SEA $pkgbase-indic $pkgbase-japanese $pkgbase-korean
     $pkgbase-zh_CN $pkgbase-zh_TW $pkgbase-thai $pkgbase-other)
 
-pkgver=6.3.9600.16384
+pkgver=6.3.9600.17050
 pkgrel=1
 pkgdesc='Microsoft Windows 8.1 TrueType fonts'
 arch=('any')
