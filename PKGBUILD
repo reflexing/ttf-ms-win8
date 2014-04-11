@@ -181,8 +181,7 @@ Shonar.ttf     Shonarb.ttf                                  # Shonar Bangla     
 iskpota.ttf    iskpotab.ttf                                 # Iskoola Pota                6.00 Sinhala
 )
 
-#Chinese (Simplified)
-_zh_CN=(
+_zh_CN=( # Chinese (Simplified)
 #########################################################################################################
 # Normal         Bold          Italic        Bold+Italic    #  Full name               Version  Comment #
 #########################################################################################################
@@ -198,8 +197,7 @@ msyhl.ttc                                                   # Microsoft YaHei Li
 #msyhl.ttc                                                  # Microsoft YaHei UI Light    1.01
 )
 
-#Chinese (Traditional)
-_zh_TW=(
+_zh_TW=( # Chinese (Traditional)
 #########################################################################################################
 # Normal         Bold          Italic        Bold+Italic    #  Full name               Version  Comment #
 #########################################################################################################
@@ -313,7 +311,7 @@ plantc.ttf                                                  # Plantagenet Cherok
 mvboli.ttf                                                  # MV Boli                     6.00 Thaana, Maldivian
 )
 
-source=( "${_ttf_ms_win8[@]}" "${_vista[@]}" "${_arabic[@]}" "${_hebrew[@]}"
+source=("${_ttf_ms_win8[@]}" "${_vista[@]}" "${_arabic[@]}" "${_hebrew[@]}"
     "${_SEA[@]}" "${_korean[@]}" "${_japanese[@]}" "${_zh_CN[@]}"
     "${_zh_TW[@]}" "${_indic[@]}" "${_thai[@]}" "${_other[@]}" license.rtf)
 
