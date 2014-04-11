@@ -26,7 +26,7 @@
 #
 #    You can freely download the Windows 8.1 Enterprise 90-day evaluation from:
 #
-#       http://technet.microsoft.com/en-US/evalcenter/hh699156.aspx?ocid=wc-mscom-ent
+#       http://technet.microsoft.com/en-US/evalcenter/hh699156.aspx
 #
 #    Fonts are located in 'sources/install.wim' file on the ISO, which
 #    is a 'Windows Imaging Format' (WIM) archive.
