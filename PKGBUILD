@@ -98,7 +98,7 @@ seguisb.ttf                                                 # Segoe UI Semibold 
                               seguisbi.ttf                  #   Italic                    5.26
 segoeuisl.ttf                                               # Segoe UI Semilight          5.33
                               seguisli.ttf                  #   Italic                    5.26
-seguisym.ttf                                                # Segoe UI Symbol             6.06
+seguisym.ttf                                                # Segoe UI Symbol             6.09
 Sitka.ttc      SitkaB.ttc     SitkaI.ttc     SitkaZ.ttc     # Sitka Banner                1.10 Latin, Greek and Cyrillic
 #Sitka.ttc     #SitkaB.ttc    #SitkaI.ttc    #SitkaZ.ttc    # Sitka Display               1.10
 #Sitka.ttc     #SitkaB.ttc    #SitkaI.ttc    #SitkaZ.ttc    # Sitka Heading               1.10
@@ -454,7 +454,7 @@ md5sums=('08076fbc949659080b0f8744f3729a26'
          '1770fbba68d5afa129c8243ed92b0c1c'
          'bc4ea50de4dd5dc42b32a0a6d0cd990b'
          'c5e631d3da2bdf8ce9929ae794843a06'
-         'af96fbf7096b608480f0df146bfb8646'
+         '523ab078aac307d0e576a80bc155d32e'
          '164ff6ff28c62089186dc097ae48d2b8'
          '5dbde7b0804b8c3c996ec4fd06d93885'
          '2e4c9266278a6eccf131b6683ff3ca75'
