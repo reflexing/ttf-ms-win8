@@ -1,4 +1,5 @@
 # Maintainer: reflexing <reflexing@reflexing.ru>
+# Package is maintained on GitHub: https://github.com/reflexing/ttf-ms-win8
 #
 # BUILD INSTRUCTIONS:
 # ----------------------
