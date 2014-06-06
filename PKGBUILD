@@ -311,9 +311,9 @@ plantc.ttf                                                  # Plantagenet Cherok
 mvboli.ttf                                                  # MV Boli                     6.00 Thaana, Maldivian
 )
 
-source=("${_ttf_ms_win8[@]}" "${_vista[@]}" "${_arabic[@]}" "${_hebrew[@]}"
-    "${_SEA[@]}" "${_korean[@]}" "${_japanese[@]}" "${_zh_CN[@]}"
-    "${_zh_TW[@]}" "${_indic[@]}" "${_thai[@]}" "${_other[@]}" license.rtf)
+source=("${_ttf_ms_win8[@]}" "${_arabic[@]}" "${_hebrew[@]}"
+    "${_sea[@]}" "${_korean[@]}" "${_japanese[@]}" "${_zh_cn[@]}"
+    "${_zh_tw[@]}" "${_indic[@]}" "${_thai[@]}" "${_other[@]}" license.rtf)
 
 function _extract_ttcs {
     # Tabs are essential!
@@ -476,32 +476,6 @@ md5sums=('08076fbc949659080b0f8744f3729a26'
          'b8d06d04e2d848ebcdd428cd8125f211'
          '40a90d72da61d7c609c9a4c4bb37c710'
          '68c74934563bf4afa50793c67bd19b24'
-         'b8153b3166e6cdf1cbe716ebd91b9a80'
-         '8c8905b9e5a727f74debd5a1519544fd'
-         'd980c8a941686affdb937b888917d98d'
-         '510e8eef6fe06f5602df33350bbd660f'
-         '0d717c4bf80cbb556bf87777fef7d09e'
-         '02dbe5c8b2af773ba84218492936326b'
-         '1b76436f80775f966d7a8d6ba101afce'
-         '8324a0b4d91c2fb5b96e3b97b2268f82'
-         'ad72f74d17852eb07cac6832b1f0161e'
-         'dd96d5bd1ac2b1d4236f68a4f77affeb'
-         '8daa0f2304ee100fe3888d5b7307e64f'
-         '702d8433e65d57e2612d01f1db078242'
-         'f4ab481e2d12c0321cc1907192da90f0'
-         '44b0a478d3b790698f52828bbf6b2b68'
-         'fb505e28b6d130f08fe8f070e0d6b1b8'
-         'a029870eeb5b0f5978e4efa1008d239b'
-         '5edcabeaacc62c4d8c7a8a2c281db68c'
-         '110f4c8c3e0db9bd6f4c546f1ed9c023'
-         'd145e0da42db9c9a2277fed0ad3bd723'
-         'b411b0999020c9c25b8151e359197150'
-         '68948ea9bc8b232cc5664e2aab39c80c'
-         '1ad619060822679a34db35a498f98ecc'
-         '51ee907427c788c3ab4442e73286d641'
-         'c87f06ae40c78321844f2eac8b51737f'
-         'e6c0e179deb07f3fc7a6d0d7a2a77247'
-         '6c5e3e581b522258be508b4d8868025d'
          'b8153b3166e6cdf1cbe716ebd91b9a80'
          '8c8905b9e5a727f74debd5a1519544fd'
          'd980c8a941686affdb937b888917d98d'
