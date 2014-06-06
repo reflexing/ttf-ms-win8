@@ -52,8 +52,8 @@
 
 pkgbase=ttf-ms-win8
 pkgname=($pkgbase $pkgbase-arabic $pkgbase-hebrew
-    $pkgbase-SEA $pkgbase-indic $pkgbase-japanese $pkgbase-korean
-    $pkgbase-zh_CN $pkgbase-zh_TW $pkgbase-thai $pkgbase-other)
+    $pkgbase-sea $pkgbase-indic $pkgbase-japanese $pkgbase-korean
+    $pkgbase-zh_cn $pkgbase-zh_tw $pkgbase-thai $pkgbase-other)
 
 pkgver=6.3.9600.17050
 pkgrel=1
@@ -137,7 +137,7 @@ corbel.ttf     corbelb.ttf    corbeli.ttf    corbelz.ttf    # Corbel            
 )
 _ttf_ms_win8=("${_ttf_ms_win8[@]}" "${_vista[@]}")
 
-_SEA=(
+_sea=(
 #########################################################################################################
 # Normal         Bold          Italic        Bold+Italic    #  Full name               Version  Comment #
 #########################################################################################################
@@ -181,7 +181,7 @@ Shonar.ttf     Shonarb.ttf                                  # Shonar Bangla     
 iskpota.ttf    iskpotab.ttf                                 # Iskoola Pota                6.00 Sinhala
 )
 
-_zh_CN=( # Chinese (Simplified)
+_zh_cn=( # Chinese (Simplified)
 #########################################################################################################
 # Normal         Bold          Italic        Bold+Italic    #  Full name               Version  Comment #
 #########################################################################################################
@@ -197,7 +197,7 @@ msyhl.ttc                                                   # Microsoft YaHei Li
 #msyhl.ttc                                                  # Microsoft YaHei UI Light    1.01
 )
 
-_zh_TW=( # Chinese (Traditional)
+_zh_tw=( # Chinese (Traditional)
 #########################################################################################################
 # Normal         Bold          Italic        Bold+Italic    #  Full name               Version  Comment #
 #########################################################################################################
@@ -375,12 +375,12 @@ function _package {
         $pkgbase) ttcs_to_extract=(cambria.ttc Sitka*.ttc);;
         $pkgbase-arabic) pkgdesc="Microsoft Windows 8.1 Arabic TrueType fonts";;
         $pkgbase-hebrew) pkgdesc="Microsoft Windows 8.1 Hebrew TrueType fonts";;
-        $pkgbase-SEA) pkgdesc="Microsoft Windows 8.1 Southeast Asian TrueType fonts";;
+        $pkgbase-sea) pkgdesc="Microsoft Windows 8.1 Southeast Asian TrueType fonts";;
         $pkgbase-indic) pkgdesc="Microsoft Windows 8.1 Indic TrueType fonts";;
         $pkgbase-japanese) pkgdesc="Microsoft Windows 8.1 Japanese TrueType fonts";;
         $pkgbase-korean) pkgdesc="Microsoft Windows 8.1 Korean TrueType fonts";;
-        $pkgbase-zh_CN) pkgdesc="Microsoft Windows 8.1 Simplified Chinese TrueType fonts";;
-        $pkgbase-zh_TW) pkgdesc="Microsoft Windows 8.1 Traditional Chinese TrueType fonts" ;;
+        $pkgbase-zh_cn) pkgdesc="Microsoft Windows 8.1 Simplified Chinese TrueType fonts";;
+        $pkgbase-zh_tw) pkgdesc="Microsoft Windows 8.1 Traditional Chinese TrueType fonts" ;;
         $pkgbase-thai) pkgdesc="Microsoft Windows 8.1 Thai TrueType fonts";;
         $pkgbase-other) pkgdesc="Microsoft Windows 8.1 other TrueType fonts";;
     esac
