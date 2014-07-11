@@ -378,10 +378,22 @@ function _package {
         $pkgbase-hebrew) pkgdesc="Microsoft Windows 8.1 Hebrew TrueType fonts";;
         $pkgbase-sea) pkgdesc="Microsoft Windows 8.1 Southeast Asian TrueType fonts";;
         $pkgbase-indic) pkgdesc="Microsoft Windows 8.1 Indic TrueType fonts";;
-        $pkgbase-japanese) pkgdesc="Microsoft Windows 8.1 Japanese TrueType fonts";;
-        $pkgbase-korean) pkgdesc="Microsoft Windows 8.1 Korean TrueType fonts";;
-        $pkgbase-zh_cn) pkgdesc="Microsoft Windows 8.1 Simplified Chinese TrueType fonts";;
-        $pkgbase-zh_tw) pkgdesc="Microsoft Windows 8.1 Traditional Chinese TrueType fonts" ;;
+        $pkgbase-japanese)
+            pkgdesc="Microsoft Windows 8.1 Japanese TrueType fonts"
+            ttcs_to_extract=(meiryo*.ttc msgothic.ttc msmincho.ttc)
+        ;;
+        $pkgbase-korean)
+            pkgdesc="Microsoft Windows 8.1 Korean TrueType fonts"
+            ttcs_to_extract=(batang.ttc gulim.ttc)
+        ;;
+        $pkgbase-zh_cn)
+            pkgdesc="Microsoft Windows 8.1 Simplified Chinese TrueType fonts"
+            ttcs_to_extract=(msyh*.ttc simsun.ttc)
+        ;;
+        $pkgbase-zh_tw)
+            pkgdesc="Microsoft Windows 8.1 Traditional Chinese TrueType fonts"
+            ttcs_to_extract=(mingliu*.ttc msjh*.ttc)
+        ;;
         $pkgbase-thai) pkgdesc="Microsoft Windows 8.1 Thai TrueType fonts";;
         $pkgbase-other) pkgdesc="Microsoft Windows 8.1 other TrueType fonts";;
     esac
