@@ -1,5 +1,6 @@
 # Maintainer: reflexing <reflexing@reflexing.ru>
 # Package is maintained on GitHub: https://github.com/reflexing/ttf-ms-win8
+# ArchWiki page:  https://wiki.archlinux.org/index.php/Ttf-ms-win8
 #
 # BUILD INSTRUCTIONS:
 # ----------------------
