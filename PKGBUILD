@@ -57,7 +57,7 @@ pkgname=($pkgbase $pkgbase-arabic $pkgbase-hebrew
     $pkgbase-zh_cn $pkgbase-zh_tw $pkgbase-thai $pkgbase-other)
 
 pkgver=6.3.9600.17050
-pkgrel=1
+pkgrel=2
 pkgdesc='Microsoft Windows 8.1 TrueType fonts'
 arch=('any')
 url='http://www.microsoft.com/typography/fonts/product.aspx?PID=164'
