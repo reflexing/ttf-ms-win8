@@ -64,8 +64,8 @@ url='http://www.microsoft.com/typography/fonts/product.aspx?PID=164'
 license=('custom')
 depends=('fontconfig' 'xorg-fonts-encodings' 'xorg-mkfontscale' 'xorg-mkfontdir')
 makedepends=('fontforge')
-provides=('ttf-win7-fonts' 'ttf-vista-fonts' 'ttf-ms-fonts' 'ttf-tahoma')
-conflicts=('ttf-win7-fonts' 'ttf-vista-fonts' 'ttf-ms-fonts' 'ttf-tahoma')
+provides=('ttf-font' 'ttf-ms-fonts' 'ttf-tahoma' 'ttf-vista-fonts' 'ttf-win7-fonts')
+conflicts=('ttf-ms-fonts' 'ttf-tahoma' 'ttf-vista-fonts' 'ttf-win7-fonts')
 install="$pkgbase.install"
 PKGEXT='.pkg.tar' # because XZ compression is awfully slow
 
