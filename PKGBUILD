@@ -357,8 +357,6 @@ function _remove_from_fonts_array {
 }
 
 function _package {
-    cd "$srcdir"
-
     # Array name can't have underscores… thus this check
     if [ "$1" = "$pkgbase" ]; then
         fonts_array_name=_${pkgbase//-/_}[@];
