@@ -341,7 +341,8 @@ function _extract_ttcs {
 			endloop
 		i = i+1
 		endloop
-	SETVAR)
+	SETVAR
+	)
 
     fontforge -lang=ff -c "$ff_script" $*
     rm $*
